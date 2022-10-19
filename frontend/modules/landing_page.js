@@ -1,17 +1,13 @@
 import config from "../conf/index.js";
 
 async function init() {
-  console.log("From init()");
-  console.log("http://" + config.backendEndpoint + ":8082/cities");
   //Fetches list of all cities along with their images and description
   let cities = await fetchCities();
-  console.log('cities',cities);
 
   //Updates the DOM with the cities
   cities.forEach((key) => {
     addCityToDOM(key.id, key.city, key.description, key.image);
   });
-  
 }
 
 //Implementation of fetch call
@@ -44,6 +40,7 @@ function addCityToDOM(id, city, description, image) {
           </a>
         </div>
     `
+
 }
 
 export { init, fetchCities, addCityToDOM };

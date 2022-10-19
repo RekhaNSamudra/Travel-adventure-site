@@ -7,6 +7,7 @@ function getCityFromURL(search) {
   // 1. Extract the city id from the URL's Query Param and return it
   const cityId = new URLSearchParams(search);
   return cityId.get('city');
+
 }
 
 //Implementation of fetch call with a paramterized input based on city
@@ -20,6 +21,8 @@ async function fetchAdventures(city) {
     return null;
   }
 } 
+
+
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
 function addAdventureToDOM(adventures) {
@@ -50,6 +53,7 @@ function addAdventureToDOM(adventures) {
     `
     parent.appendChild(adventuresDiv);
    }) 
+
 }
 
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.
