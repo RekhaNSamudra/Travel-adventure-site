@@ -118,8 +118,8 @@ if(filters.duration !== "" && filters.category.length > 0)
 function saveFiltersToLocalStorage(filters) {
   // TODO: MODULE_FILTERS
   // 1. Store the filters as a String to localStorage
-  localStorage.setItem("category", JSON.stringify(filters.category));
-  localStorage.setItem("duration", JSON.stringify(filters.duration));
+ // localStorage.setItem("category", JSON.stringify(filters.category));
+  localStorage.setItem("filters", JSON.stringify(filters));
   return true;
 }
 
@@ -127,9 +127,9 @@ function saveFiltersToLocalStorage(filters) {
 function getFiltersFromLocalStorage() {
   // TODO: MODULE_FILTERS
   // 1. Get the filters from localStorage and return String read as an object
-  const savedDuration = JSON.parse(localStorage.getItem("category"));
-  const savedCategory = JSON.parse(localStorage.getItem("category"));
-  const obj = {savedCategory, savedDuration};
+  //const savedDuration = JSON.parse(localStorage.getItem("duration"));
+  const obj = JSON.parse(localStorage.getItem("filters"));
+  //const obj = {savedCategory, savedDuration};
   // Place holder for functionality to work in the Stubs
   return obj;
 }
@@ -141,13 +141,21 @@ function getFiltersFromLocalStorage() {
 function generateFilterPillsAndUpdateDOM(filters) {
   // TODO: MODULE_FILTERS
   // 1. Use the filters given as input, update the Duration Filter value and Generate Category Pills
-  const parent = document.getElementById('category-list');
-  filters.category.forEach((elem) => {
-    elem = document.createElement('div');
-    elem.className = "category-filter";
-    elem.textContent = filters.category;
-  })
-  parent.appendChild(elem);
+  
+  //Sets value in dropdown for duration filter
+  // NOTE - Needed to display value read from localstorage on reloadcd 
+  document.getElementById("duration-select").value = filters.duration;
+
+  //Iterates over category filters and inserts category pills into DOM
+  filters["category"].forEach((key) => {
+    let ele = document.createElement("div");
+    ele.className = "category-filter";
+    ele.innerHTML = `
+                 <div>${key}</div>
+                `;
+
+    document.getElementById("category-list").appendChild(ele);
+  });
 }
 export {
   getCityFromURL,
