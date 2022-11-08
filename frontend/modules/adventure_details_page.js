@@ -4,32 +4,92 @@ import config from "../conf/index.js";
 function getAdventureIdFromURL(search) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Get the Adventure Id from the URL
-
-
+  const urlParams = new URLSearchParams(search);
+  const adventureId = urlParams.get("adventure");
+  return adventureId;
   // Place holder for functionality to work in the Stubs
-  return null;
+  // return null;
 }
 //Implementation of fetch call with a paramterized input based on adventure ID
 async function fetchAdventureDetails(adventureId) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Fetch the details of the adventure by making an API call
-
+  try{
+    const result = await fetch(config.backendEndpoint + `/adventures/detail?adventure=${adventureId}`);
+    const data = await result.json();
+    return data;
+  } catch (e) {
+    return null;
+  }
 
   // Place holder for functionality to work in the Stubs
-  return null;
+  // return null;
 }
 
 //Implementation of DOM manipulation to add adventure details to DOM
 function addAdventureDetailsToDOM(adventure) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Add the details of the adventure to the HTML DOM
+  document.getElementById("adventure-name").innerHTML = adventure.name;
 
+  document.getElementById("adventure-subtitle").innerHTML = adventure.subtitle;
+
+
+  adventure.images.map((image) => {
+    let ele = document.createElement("div");
+    ele.className = "col-lg-12";
+    ele.innerHTML =  `
+    <img
+        src=${image}
+        alt=""
+        srcset=""
+        class="activity-card-image pb-3 pb-md-0"
+    />
+    `;
+    document.getElementById("photo-gallery").appendChild(ele);
+  });
+
+  document.getElementById("adventure-content").innerHTML = adventure.content;
 }
 
 //Implementation of bootstrap gallery component
 function addBootstrapPhotoGallery(images) {
   // TODO: MODULE_ADVENTURE_DETAILS
   // 1. Add the bootstrap carousel to show the Adventure images
+  document.getElementById("photo-gallery").innerHTML = `
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#arouselExampleIndicators" data-bs-slide="0"  class="active" aria-current="true" aria-label="Slide 1"</li>
+      <button type="button" data-bs-target="#arouselExampleIndicators" data-bs-slide="1"  aria-label="Slide 2"</li>
+      <button type="button" data-bs-target="#arouselExampleIndicators" data-bs-slide="2"  aria-label="Slide 3"</li>
+    </div>
+
+    <div class="carousel-inner" id="carousel-inner">
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Prev</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>`;
+
+images.map((image, idx) => {
+  let ele = document.createElement("div");
+  ele.className = `carousel-item ${idx === 0 ? "active" : ""}`;
+  ele.innerHTML =  `
+  <img 
+      src=${image}
+      alt=""
+      srcset=""
+      class="activity-card-image pb-3 pb-md-0"
+      />
+  `;
+
+  document.getElementById("carousel-inner").appendChild(ele);
+});
 
 }
 
