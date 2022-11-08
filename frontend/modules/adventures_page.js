@@ -180,7 +180,7 @@ function getFiltersFromLocalStorage() {
   return JSON.parse(localStorage.getItem("filters"));
 
   // Place holder for functionality to work in the Stubs
-  return null;
+ // return null;
 }
 
 //Implementation of DOM manipulation to add the following filters to DOM :
