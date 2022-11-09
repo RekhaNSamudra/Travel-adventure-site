@@ -246,9 +246,26 @@ input[type="number"] {
   background-color: rgb(226, 129, 1);
 }
 
+ #photo-gallery {
+  height: 400px;
+} 
+
 #carouselExampleIndicators {
   width: 100%;
+  height:100%;
 }
+
+.carousel-inner {
+  width:100%;
+  height:100%;
+}
+
+.carousel-item > img{
+  width: 100%;
+  height: 400px;
+  object-fit: fill;
+} 
+
 #reservation-panel-sold-out {
   border: solid 1px #eee;
   border-radius: 4px;
