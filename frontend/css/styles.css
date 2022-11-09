@@ -246,6 +246,10 @@ input[type="number"] {
   background-color: rgb(226, 129, 1);
 }
 
+/* .carousel slide {
+  width: 100%;
+} */
+
 #carouselExampleIndicators {
   width: 100%;
 }
