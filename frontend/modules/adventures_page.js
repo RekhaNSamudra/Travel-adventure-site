@@ -1,5 +1,3 @@
-// CRIO_SOLUTION_START_MODULE_ADVENTURES
-// CRIO_SOLUTION_END_MODULE_ADVENTURES
 
 import config from "../conf/index.js";
 
